@@ -33,7 +33,7 @@ You can submit work by POST'ing the HTML/XML/... document to be transformed to t
 
 Example using `curl`
 
-  curl -L -d @my-input.html http://localhost:6060/submit/my-first-template
+    curl -L -d @my-input.html http://localhost:6060/submit/my-first-template
   
 You will receive a response JSON document with a UUID, status and output URL. You can follow up on the status of the request on `http://localhost:6060/task/<uuid>`. When the status is `done`, just head to the ouput URL and download the generated PDF document.
 
