@@ -56,6 +56,16 @@ func (e Engine) AllTasks() []Task {
 }
 
 func Setup(cc charming.CharmingConfig) *Engine {
+	if stat, err := os.Stat(cc.WorkDir); err == nil && stat.IsDir() {
+	  log.Printf("Using work directory %s", cc.WorkDir)
+	} else {
+		log.Printf("Creating work directory %s", cc.WorkDir)
+		err = os.Mkdir(cc.WorkDir, 0755)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
 	requests := make(chan Request)
 	responses := make(chan Task)
 	database := make(map[string]Task)
